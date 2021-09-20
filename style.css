@@ -1,0 +1,33 @@
+.login {
+
+}
+
+.menu {
+
+}
+
+.menu:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.navbar {
+
+    color: black;
+}
+
+.navbar .menu{
+
+}
+
+.sidebar {
+
+}
+
+.sidebar .menu {
+
+}
+
+.sidebar .submenu {
+    
+}
