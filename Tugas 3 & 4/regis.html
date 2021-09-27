@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register</title>
+        <link rel="stylesheet" href="style.css"/>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+    <div class="menubar">
+        <div class="menu" list-menu="user">User List</div>
+        <div class="menu" list-menu="register">Register</div>
+    </div>
+
+    <div class="laman">
+        <section data-section="user">
+            <div class="search">
+                <input type="text" name="searcing" id="search" />
+                <input type="button" search-data="form" value="Search" />
+            </div>
+            <table border="1" cellpadding="10px">
+                <thead>
+                    <tr>
+                        <th width="50px">No</th>
+                        <th width="300px">Name</th>
+                        <th width="150px">Username</th>
+                        <th width="150px">Gender</th>
+                        <th width="150px">Agama</th>
+                        <th width="200px">Hobby</th>
+                        <th width="500px">Alamat</th>
+                    </tr>
+                </thead>
+                <tbody></tbody> <!-- Isi tbody diupdate pada javascript-->
+            </table>
+            <div class="paging">
+                <input class="select" type="button" paging-first="form" value="First"/> <br>
+                <input class="select" type="button" paging-next="form" value="Next"/> <br>
+                <input class="select" type="button" paging-previous="form" value="Previous"/> <br>
+                <input class="select" type="button" paging-last="form" value="Last"/> <br>
+            </div>
+        </section>
+        <section data-section="register">
+            <h1>Lets Register</h1>
+            <form>
+                Name : <input type="text" name="name" id="name"/> <br> <br>
+                Username : <input type="text" name="username" id="username"/> <br> <br>
+                Password : <input type="password" name="password" id="password"/> <br> <br>
+                Jenis Kelamin : 
+                <input type="radio" name="gender" value="Female"/>
+                <label for="female"> Female</label>
+                <input type="radio" name="gender" value="Male"/>
+                <label for="male"> Male</label>
+                <br> <br>
+                Agama : <select name="agama" id="agama">
+                    <option selected="" value="default">Pilih Agama Anda</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen">Kristen</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Budha">Budha</option>
+                </select>
+                <br> <br>
+                Hobby : <select name="hobby" id="hobby">
+                    <option selected="" value="default">Pilih Hobby yang Anda Sukai</option>
+                    <option value="Riding">Riding</option>
+                    <option value="Fishing">Fishing</option>
+                    <option value="Singing">Singing</option>
+                </select>
+                <br><br>
+                Alamat : <input type="text" name="alamat" id="alamat"/>
+                <br><br>
+                <input type="button" data-input="form" value="Registrasi"/> <br>
+            </form>
+        </section>
+    </div>
+    </body>
+</html>

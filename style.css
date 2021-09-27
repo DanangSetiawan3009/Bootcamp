@@ -80,3 +80,11 @@
     background-color: lightgrey;
     cursor: pointer;
   }
+
+  [data-section-content] {
+    display: none;
+  }
+
+  [data-section-content].show {
+    display: block;
+  }

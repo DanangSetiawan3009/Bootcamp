@@ -1,0 +1,43 @@
+.menubar {
+    display: flex;
+    background-color: red;
+  }
+  
+.menubar .menu {
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+  
+.menubar .menu:hover {
+    background-color: orangered;
+    cursor: pointer;
+}
+
+.search {
+    padding: 20px 0px 5px;
+}
+
+.laman {
+    padding: 5px;
+    align-items: center;
+}
+
+.paging {
+    display: flex;
+    background-color: azure;
+    justify-content: center;
+    padding-bottom: 0%;
+}
+
+.select {
+    margin: 5px 5px;
+}
+
+[data-section] {
+    display: none;
+}
+
+[data-section].show {
+    display: block;
+}

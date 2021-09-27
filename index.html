@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title> W3Schools KW</title>
         <link rel="stylesheet" href="style.css"/>
-        <script defer src="script.js"></script>
+        <script defer src="template.js"></script>
         <style>
             body {
               margin: 0;
@@ -92,10 +92,12 @@
         </div>
 
         <div class="navbar">
-            <div class="menu">Home</div>
-            <div class="menu">HTML</div>
-            <div class="menu">CSS</div>
-            <div class="menu">JavaScript</div>
+            <div class="menu" data-menu="home">Home</div>
+            <div class="menu" data-menu="html" >HTML</div>
+            <div class="menu" data-menu="css" >CSS</div>
+            <div class="menu" data-menu="javascript" >JavaScript</div>
+            <div class="menu" data-menu="user">User List</div>
+            <div class="menu" data-menu="register">Register</div>
         </div>
 
         <div class="body">
@@ -106,6 +108,8 @@
                 <div class="submenu">HTML Code</div>
             </div>
             <div class="content">
+              <section data-section-content="user">ini user list</section>
+              <section data-section-content="register">
                 <form name="form1">
                 <label for="username">Username</label>
                 <input id="username" name="username" type="text" />
@@ -113,8 +117,9 @@
                 <span>Password</span>
                 <input name="password" type="password" />
                 <br />
-                <input type="button" onclick="clickButton()" value="Click" />
+                <input type="button" value="Click" />
                 </form>
+              </section>
             </div>
         </div>
     </body>
