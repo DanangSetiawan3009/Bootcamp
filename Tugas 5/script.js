@@ -7,14 +7,8 @@ const addEvent = () => {
         }
         // Klik Registrasi 
         if (e.target.getAttribute("data-input")) saveData()
-        // Klik First Page
-        if (e.target.getAttribute("paging-first")) firstPage()
-        // Klik Next Page
-        if (e.target.getAttribute("paging-next")) nextPage()
-        // Klik Previous Page
-        if (e.target.getAttribute("paging-previous")) previousPage()
-        // Klik Last Page
-        if (e.target.getAttribute("paging-last")) lastPage()
+        // Klik Search
+        if(e.target.getAttribute("search-data")) searchData()
     })
 }
 
@@ -32,78 +26,50 @@ const changeContent = selector => {
     let menus = document.querySelectorAll("[data-section]")
     menus.forEach(menu => menu.classList.remove("show"))
     document.querySelector(`[data-section='${selector}']`)?.classList.add("show")
-    // if (selector === "user") showUser()
 }
 
-// const showUser = () => {
-//     const userList = [{
-        
-//     }]
-    
-//     const section = document.querySelector("[data-section='user']")
-    
-//     section.innerHTML = ""
-//     userList.forEach(user => {
-//         section.innerHTML += `<h1>${user.name}</h1>`
-//     })
+// const fn1 = () => {
+//     return fetch('https://jsonplaceholder.typicode.com/todos/1')
+//     .then(response => response.json())
+//     // .then(json => console.log(json))
 // }
 
-users = [] // Membuat Array kosong untuk di update
-const updateUserList = () => {
-    document.querySelector("table>tbody").innerHTML = ""
-    for (let index = 0; index < users.length; index++) {
-        const user = users[index]
-        document.querySelector("table>tbody").innerHTML += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${user.name}</td>
-            <td>${user.username}</td>
-            <td>${user.gender}</td>
-            <td>${user.agama}</td>
-            <td>${user.hobby}</td>
-            <td>${user.alamat}</td>
-        </tr>
-        `
-    }
-}
+// const callAPI = async () => {
+//     users = await fn1()
+// }
+countList = []
+addPageList = []
+presentPage = 1;
+countPerEachPage = 5;
+countOfPages = 1;
 
 const saveData = () => {
     const name = document.querySelector("[name='name']").value
     const username = document.querySelector("[name='username']").value
-    const gender = document.querySelector("[name='gender']:checked")?.value
-    const agama = document.querySelector("[name='agama']").value
-    const hobby = document.querySelector("[name='hobby']").value
-    const alamat = document.querySelector("[name='alamat']").value
+    const email = document.querySelector("[name='email']").value
+    const city = document.querySelector("[name='city']").value
 
-    users.push({
+    countList.push({
         name,
         username,
-        gender,
-        agama,
-        hobby,
-        alamat
+        email,
+        city
     })
-    updateUserList()
-    selectMenu("user")
-    if (users => 5) {
-        
-    }
-}
 
-// Paging Methods
-countList = new Array();
-addPageList = new Array();
-presentPage = 1;
-countPerEachPage = 10;
-countOfPages = 0;
-
-const prepareList = () => {
-    for (let index = 0; index < 100; index++) {
-        countList.push(index);
+    document.querySelector("table>tbody").innerHTML = ""
+    loadMyPaginationList()
+    for (let index = 0; index < countList.length; index++) {
         countOfPages = getCountOfPages();
     }
+    selectMenu("user")
 }
 
+// Searching Data Function
+const searchData = () => {
+
+}
+
+// Paging Function
 const getCountOfPages = () => {
     countList.length / countPerEachPage;
 }
@@ -136,10 +102,27 @@ const loadMyPaginationList = () => {
     validatePageCount();
 }
 
-const createPageList = () => {
-    document.getElementById("countList").innerHTML = "";
+// input default data dari json
+// const fn1 = () => {
+//     return fetch('https://jsonplaceholder.typicode.com/todos/1')
+//     .then(response => response.json())
+// }
+
+const createPageList = async () => {
+    // countList = await fn1()
+    document.querySelector("table>tbody").innerHTML = "";
     for (p = 0; p< addPageList.length; p++) {
-    document.getElementById("countList").innerHTML = document.getElementById("countList").innerHTML+ addPageList[p] + "<br/>";
+        document.querySelector("table>tbody").innerHTML += `
+        <tr>
+            <td value='${p + 1}'>${p + 1}</td>
+            <td>${addPageList[p].name}</td>
+            <td>${addPageList[p].username}</td>
+            <td>${addPageList[p].email}</td>
+            <td>${addPageList[p].city}</td>
+            <td align='center' type='button'>Edit</td>
+            <td align='center'type='button'>Delete</td>
+        </tr>
+        `
     }
 }
 
@@ -150,17 +133,20 @@ const validatePageCount = () => {
     document.getElementById("last").disabled = presentPage == countOfPages ? true : false;
 }
 
-const loadMyPagination = () => {
-    prepareList();
-    loadMyPaginationList();
-}
-window.onload = loadMyPagination;
+// const loadMyPagination = () => {
+//     prepareList();
+//     loadMyPaginationList();
+// }
 
-// 
+// window.onload = loadMyPagination;
+
+
+// Untuk memanggil function di awal
 const __init = () => {
     addEvent()
     selectMenu("register")
-    updateUserList()
+    createPageList()
+    loadMyPaginationList();
 }
 __init()
 

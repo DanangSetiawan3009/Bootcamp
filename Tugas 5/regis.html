@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register</title>
+        <link rel="stylesheet" href="style.css"/>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+    <div class="menubar">
+        <div class="menu" list-menu="user">User List</div>
+        <div class="menu" list-menu="register">Register</div>
+    </div>
+
+    <div class="laman">
+        <section data-section="user">
+            <div class="search">
+                <input type="text" name="searcing" id="search" />
+                <input type="button" search-data="form" value="Search" />
+            </div>
+            <table border="1" cellpadding="10px">
+                <thead>
+                    <tr>
+                        <th width="50px">No</th>
+                        <th width="150px">Name</th>
+                        <th width="150px">Username</th>
+                        <th width="150px">Email</th>
+                        <th width="150px">City</th>
+                        <th width="250px" colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody> <!-- Isi tbody diupdate pada javascript-->
+            </table>
+            <div class="paging">
+                <input class="select" id="first" type="button" value="First"/> <br>
+                <input class="select" id="next" type="button" value="Next"/> <br>
+                <input class="select" id="previous" type="button" value="Previous"/> <br>
+                <input class="select" id="last" type="button" value="Last"/> <br>
+            </div>
+        </section>
+        <section data-section="register">
+            <h1>Lets Register</h1>
+            <form>
+                Name : <input type="text" name="name" id="name"/> <br><br>
+                Username : <input type="text" name="username" id="username"/> <br><br>
+                Email : <input type="text" name="email" id="email"/> <br><br>
+                City : <input type="text" name="city" id="city"/> <br><br>
+                <input type="button" data-input="form" value="Registrasi"/> <br>
+            </form>
+        </section>
+    </div>
+    </body>
+</html>
