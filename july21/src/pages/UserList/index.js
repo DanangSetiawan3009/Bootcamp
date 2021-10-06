@@ -13,8 +13,8 @@ class index extends Component {
                         <td>{idx +1}</td>
                         <td>{user.username}</td>
                         <td>{user.address}</td>
-                        <td align="center"><button onClick={this.props.editD}>Edit</button></td>
-                        <td align="center"><button onClick={this.props.dell}>Delete</button></td>
+                        <td align="center"><button onClick={() => this.props.setUser(idx)}>Edit</button></td>
+                        <td align="center"><button onClick={() => this.props.dellUser(idx)}>Delete</button></td>
                     </tr>
         })
     }

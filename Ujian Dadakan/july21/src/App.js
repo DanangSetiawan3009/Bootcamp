@@ -1,0 +1,28 @@
+import React, { Component } from 'react';
+import {Menubar, Content} from "./template";
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menu : "parkir"
+        };
+    }
+
+    selectPage = page => {
+        this.setState({
+          menu: page
+        })
+    }
+
+    render() {
+        return (
+            <>
+                <Menubar goToPage={this.selectPage} />
+                <Content menu={this.state.menu}/>
+            </>
+        );
+    }
+}
+
+export default App;

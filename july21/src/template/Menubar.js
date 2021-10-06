@@ -28,6 +28,7 @@ class Menubar extends Component {
                 <Menu click={() => this.props.goToPage("user")}>User List</Menu>
                 <Menu disabled={this.state.disable} click={() => this.props.goToPage("register")}>Register</Menu>
                 <Menu click={() => this.props.goToPage("login")}>Login</Menu>
+                <Menu click={() => this.props.goToPage("form")}>Edit Data</Menu>
             </div>
         );
     }
