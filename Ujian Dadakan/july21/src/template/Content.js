@@ -34,7 +34,11 @@ class Content extends Component {
         }
 
         if (this.props.menu === "list") {
-            return <ListParkir motors={this.state.motor} mobils={this.state.mobil} />
+            return <ListParkir 
+                    motors={this.state.motor} 
+                    mobils={this.state.mobil}
+                    setMotor={this.}
+                    setMobil={this.} />
         }
         // Menu Parkir Home
         return <Parkir motorIn={this.motorEnter} mobilIn={this.mobilEnter} />
