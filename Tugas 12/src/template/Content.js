@@ -1,7 +1,8 @@
 /* eslint-disable eqeqeq */
 import React, { Component } from 'react'
-import {Login, UserList, Register, Home, FormEdit} from "../pages"
+import {Login, UserList, Register, Home, FormEdit, Profile} from "../pages"
 import {Switch, Route} from "react-router-dom"
+import axios from "axios"
 
 class Content extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class Content extends Component {
                 address: "Semarang"
             }],
             selectedUser: -1,
-            isLogin: false
+            isLogin: false,
+            isUser: false,
+            user: {}
         };
     }
 
@@ -56,24 +59,47 @@ class Content extends Component {
     }
 
     // Function Login
-    fnLogin = status => {
-        // console.log(dataLogin);
-        this.setState({
-            isLogin: status
-        })
+    // fnLogin = status => {
+    //     // console.log(dataLogin);
+    //     this.setState({
+    //         isLogin: status
+    //     })
+    // }
+
+    componentDidMount() {
+        const config = {
+            headers: {
+                Authorization: "Bearer" + localStorage.getItem("token")
+            }
+        }
+
+        axios.get("http://localhost:3000/", config).then(
+            res => {
+                this.setState({
+                    user: res.data
+                })
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
     render() {
+
+        if(this.state.user) {
+            return (
+                <Route path="/profile" children={() => <Profile users={this.state.user}/>} />
+            )
+        }
+
         return (
             <Switch>
                 {/* exact untuk menentukan halaman home */}
                 <Route path="/" exact component={Home} />
                 {/* diapit didalam Route tidak bisa mengambil props default */}
                 <Route path="/user">
-                    <UserList users={this.state.data} 
-                            dellUser={this.deleteData} 
-                            setUser={this.updateSelectedUser} 
-                            statusLogin={this.state.isLogin} />
+                    <UserList users={this.state.data} dellUser={this.deleteData} setUser={this.updateSelectedUser} statusLogin={this.state.isLogin} />
                 </Route>
                 {/* didalam tag Route bisa mengambil props default : history, location, match */}
                 {

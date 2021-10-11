@@ -16,12 +16,24 @@ class index extends Component {
         })
     }
 
+    resetForm = () => {
+        this.setState({
+            username: "",
+            password: ""
+        })
+    }
+
     loginButton = () => {
         const {username, password} = this.state
-        const dataLogin = {
-            username, password
-        }
-        this.props.userLogin(dataLogin)
+        // const dataLogin = {
+        //     username, password
+        // }
+        // this.props.userLogin(dataLogin)
+        if (username === "admin" && password === "123") {
+            this.props.userLogin(true)
+            this.resetForm()
+            this.props.history.push("/") 
+        } else alert("Username/Password Salah")
     }
 
     render() {

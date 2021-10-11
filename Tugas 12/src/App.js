@@ -19,11 +19,12 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
-                <Menubar goToPage={this.selectPage} />
-                <Content menu={this.state.menu} goToPage={this.selectPage} />
-            </Router>
-            
+            <div className="wrapper">
+                <Router>
+                    <Menubar goToPage={this.selectPage} />
+                    <Content menu={this.state.menu} goToPage={this.selectPage} />
+                </Router>
+            </div>
         );
     }
 }
