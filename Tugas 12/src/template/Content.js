@@ -16,7 +16,7 @@ class Content extends Component {
             selectedUser: -1,
             isLogin: false,
             isUser: false,
-            user: {}
+            user: ""
         };
     }
 
