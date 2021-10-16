@@ -15,31 +15,42 @@ class index extends Component {
     componentDidMount () {
         setTimeout(() => {
         this.setState({loading: false})
-        }, 1000)
+        }, 2000)
+    }
+
+    sewaMotor = () => {
+
     }
 
     renderList = () => {
-        return this.props.users.map((user, idx) => {
-            return <tr key={idx}>
-                        <td>{idx +1}</td>
-                        <td>{user.username}</td>
-                        <td>{user.address}</td>
-                        <td align="center"><Link to={`/form/${idx}`}>Edit</Link></td>
-                        <td align="center"><button onClick={() => this.props.dellUser(idx)}>Delete</button></td>
-                    </tr>
+        fetch("localhost:8080/api/motors", {
+            method : "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         })
-    }
+        .then((response) => response.json())
+        .then((motor) => {
+            console.log("motor", motor);
 
-    logoutUser = () => {
-        localStorage.removeItem()
-        this.props.logOut()
-        this.props.history.push("/login")
+            localStorage.setItem('motor', motor)
+            return motor.map((motor, idx) => {
+                return <tr key={idx}>
+                            <td>{idx +1}</td>
+                            <td>{motor.jenis}</td>
+                            <td>{motor.harga}</td>
+                            <td><button onClick={this.sewaMotor}> Sewa </button></td>
+                        </tr>
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        
     }
 
     render() {
-        if (!this.props.statLogin)
-            return <Redirect to="/" />
-
         return (
             <div style={{
                 display: "flex",
@@ -55,16 +66,15 @@ class index extends Component {
                         <thead>
                             <tr>
                             <td width="25" align="center">No</td>
-                                <td width="200" align="center">Username</td>
-                                <td width="200" align="center">Address</td>
-                                <td width="200" colSpan="2" align="center">Action</td>
+                                <td width="200" align="center">Jenis Motor</td>
+                                <td width="200" align="center">Harga</td>
+                                <td width="200" align="center">Action</td>
                             </tr>
                         </thead>
                         <tbody>
                             {this.renderList()}
                         </tbody>
                     </Table> 
-                    <button onClick={this.logoutUser} >Log Out</button>
                     </div>
                 }
             </div>
@@ -73,13 +83,11 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-    statLogin: state.statusLogin
+    users: state.dataUser.user
 })
 
 const mapDispatchToProps = dispatch => ({
-    logOut: () => dispatch ({
-        type: "LOGOUT_OK"
-    }) 
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (index);

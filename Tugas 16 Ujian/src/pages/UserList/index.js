@@ -73,7 +73,8 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-    statLogin: state.statusLogin
+    statLogin: state.loginReducer.statusLogin,
+    users: state.dataUser.user
 })
 
 const mapDispatchToProps = dispatch => ({
