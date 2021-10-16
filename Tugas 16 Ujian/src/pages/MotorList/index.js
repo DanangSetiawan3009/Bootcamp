@@ -16,38 +16,55 @@ class index extends Component {
         setTimeout(() => {
         this.setState({loading: false})
         }, 2000)
-    }
-
-    sewaMotor = () => {
-
-    }
-
-    renderList = () => {
         fetch("localhost:8080/api/motors", {
             method : "GET",
+            mode: "cors",
             headers: {
                 'Accept': 'application/json',
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             }
         })
         .then((response) => response.json())
         .then((motor) => {
             console.log("motor", motor);
-
-            localStorage.setItem('motor', motor)
-            return motor.map((motor, idx) => {
-                return <tr key={idx}>
-                            <td>{idx +1}</td>
-                            <td>{motor.jenis}</td>
-                            <td>{motor.harga}</td>
-                            <td><button onClick={this.sewaMotor}> Sewa </button></td>
-                        </tr>
-            })
+            localStorage.setItem("motor", motor)
+            this.props.getMotor(motor)
         })
         .catch((err) => {
             console.log(err);
         })
-        
+    }
+
+    sewaMotor = () => {
+        fetch("http://localhost:8080/api/checkout", {
+            method : "POST",
+            mode : "cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': "Bearer " + this.props.tokens
+            }
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            console.log("json", json);
+
+            alert("Sewa Sukses")
+            this.props.history.push("/user")
+        })
+    }
+
+    renderList = () => {
+        return this.props.motors.map((motor, idx) => {
+            return <tr key={idx}>
+                        <td>{idx +1}</td>
+                        <td>{motor.jenis}</td>
+                        <td>{motor.harga}</td>
+                        <td align="center"><button onClick={this.sewaMotor}> Sewa </button></td>
+                    </tr>
+        })
     }
 
     render() {
@@ -83,11 +100,15 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-    users: state.dataUser.user
+    motors: state.listMotor.motor,
+    tokens: state.loginReducer.token
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    getMotor: motor => dispatch ({
+        type: "GET_MOTOR",
+        payload: motor
+    })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (index);

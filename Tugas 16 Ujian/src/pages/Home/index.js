@@ -13,11 +13,11 @@ class index extends Component {
     render() {
         return (
             <div style={{
+                display: "flex",
                 justifyContent: "center",
                 alignContent: "center",
                 padding: 20 
             }}>
-                <h1>{this.props.valueRedux}</h1>
                 <div style={{
                     width: 800,
                     height: 500,

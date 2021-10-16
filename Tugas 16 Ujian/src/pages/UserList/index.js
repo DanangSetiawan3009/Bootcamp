@@ -23,9 +23,7 @@ class index extends Component {
             return <tr key={idx}>
                         <td>{idx +1}</td>
                         <td>{user.username}</td>
-                        <td>{user.address}</td>
-                        <td align="center"><Link to={`/form/${idx}`}>Edit</Link></td>
-                        <td align="center"><button onClick={() => this.props.dellUser(idx)}>Delete</button></td>
+                        <td>{user.status}</td>
                     </tr>
         })
     }
@@ -56,8 +54,7 @@ class index extends Component {
                             <tr>
                             <td width="25" align="center">No</td>
                                 <td width="200" align="center">Username</td>
-                                <td width="200" align="center">Address</td>
-                                <td width="200" colSpan="2" align="center">Action</td>
+                                <td width="200" align="center">Status</td>
                             </tr>
                         </thead>
                         <tbody>

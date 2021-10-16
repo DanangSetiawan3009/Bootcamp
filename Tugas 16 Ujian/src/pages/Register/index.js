@@ -52,6 +52,9 @@ class index extends Component {
         return (
             <div style={{
                 padding: 20,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 backgroundColor: "lightgrey"
             }}>
                 <div>

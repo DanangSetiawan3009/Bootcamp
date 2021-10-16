@@ -15,9 +15,9 @@ class Menubar extends Component {
             <div style={{
                 padding: 10,
                 display: 'flex',
-                justifyContent: "flex-start",
-                alignItems: "center",
-                backgroundColor: "lightyellow",
+                justifyContent: "center",
+                alignContent: "center",
+                backgroundColor: "lightgray",
                 gap: 10
             }}>
                 <Menu target="/">Home</Menu>

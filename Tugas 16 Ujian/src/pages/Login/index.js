@@ -66,7 +66,12 @@ class index extends Component {
     
     render() {
         return (
-            <div>
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "lightgrey"
+            }}>
                 <div>
                     Username : <input type="text" name="username" onChange={this.showText} value={this.state.username} />
                 </div>
@@ -74,7 +79,7 @@ class index extends Component {
                     Password : <input type="password" name="password" onChange={this.showText} value={this.state.password} />
                 </div>
                 <div> 
-                    <h1>statusLogin: {this.props.statusLogin.toString()}</h1>
+                    <h2>statusLogin: {this.props.statusLogin.toString()}</h2>
                 </div>
                 <div>
                     <button onClick={this.loginButton}>Login</button>
