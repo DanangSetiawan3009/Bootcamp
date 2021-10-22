@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {Table} from "react-bootstrap"
 import {Spinner} from "react-bootstrap"
-import {Link, Redirect} from "react-router-dom"
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
 
 class index extends Component {
     constructor(props) {
@@ -16,13 +15,13 @@ class index extends Component {
         setTimeout(() => {
         this.setState({loading: false})
         }, 2000)
-        fetch("localhost:8080/api/motors", {
+        fetch("http://localhost:8080/api/motors", {
             method : "GET",
             mode: "cors",
             headers: {
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             }
         })
         .then((response) => response.json())

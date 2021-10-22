@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+// import "./regis.css"
 
 class index extends Component {
     constructor(props) {
@@ -51,19 +52,19 @@ class index extends Component {
     render() {
         return (
             <div style={{
-                padding: 20,
-                display: "flex",
+                display: "inline-block",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "lightgrey"
+                backgroundColor: "lightgrey",
+                padding: 20
             }}>
-                <div>
-                    Username : <input type="text" name="username" onChange={this.showText} value={this.state.username} /> 
-                </div>
-                <div>
-                    Password : <input type="password" name="password" onChange={this.showText} value={this.state.password} />
-                </div>
+                <label> Username : </label>
+                    <input type="text" name="username" onChange={this.showText} value={this.state.username} placeholder="Username" /> 
+                <label> Password : </label>
+                    <input type="password" name="password" onChange={this.showText} value={this.state.password} placeholder="Password" />
+                <div align="center">
                     <button onClick={this.regisButton}>Register</button>
+                </div>
             </div>
         );
     }

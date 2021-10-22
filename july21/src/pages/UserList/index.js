@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Table} from "react-bootstrap"
 import {Spinner} from "react-bootstrap"
-import {Link, Redirect} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { connect } from 'react-redux';
 
 class index extends Component {
@@ -18,12 +18,24 @@ class index extends Component {
         }, 1000)
     }
 
+    // renderList = () => {
+    //     return this.props.users.map((user, idx) => {
+    //         return <tr key={idx}>
+    //                     <td>{idx +1}</td>
+    //                     <td>{user.username}</td>
+    //                     <td>{user.address}</td>
+    //                     <td align="center"><Link to={`/form/${idx}`}>Edit</Link></td>
+    //                     <td align="center"><button onClick={() => this.props.dellUser(idx)}>Delete</button></td>
+    //                 </tr>
+    //     })
+    // }
+
     renderList = () => {
         return this.props.users.map((user, idx) => {
             return <tr key={idx}>
                         <td>{idx +1}</td>
-                        <td>{user.username}</td>
-                        <td>{user.address}</td>
+                        <td>{user.displayName}</td>
+                        <td>{user.email}</td>
                         <td align="center"><Link to={`/form/${idx}`}>Edit</Link></td>
                         <td align="center"><button onClick={() => this.props.dellUser(idx)}>Delete</button></td>
                     </tr>
@@ -37,8 +49,8 @@ class index extends Component {
     }
 
     render() {
-        if (!this.props.statLogin)
-            return <Redirect to="/" />
+    //     if (!this.props.statLogin)
+    //         return <Redirect to="/" />
 
         return (
             <div style={{
@@ -73,7 +85,8 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-    statLogin: state.statusLogin
+    statLogin: state.loginReducer.statusLogin,
+    users: state.listFirebase.listFB
 })
 
 const mapDispatchToProps = dispatch => ({

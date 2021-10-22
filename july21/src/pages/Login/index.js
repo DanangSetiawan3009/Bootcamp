@@ -72,6 +72,7 @@ class LoginFirebase extends Component {
         })
         .then(userCredentialRegis => {
             console.log("userCredential: ", userCredentialRegis);
+            this.props.registerFirebase(userCredentialRegis)
             alert("User created!")
         })
         .catch( err => {
@@ -85,8 +86,9 @@ class LoginFirebase extends Component {
         this.props.firebase.loginUser({
             email, password
         })
-        .then(userCredentialLogin => {
-            console.log("userCredential: ", userCredentialLogin);
+        .then(userCredential => {
+            const user = userCredential.user
+            console.log(user);
             alert("Sukses login")
             this.props.history.push("/")
             this.props.loginFirebase()
@@ -140,7 +142,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    statusLogin: state.statusLogin
+    statusLogin: state.loginReducer.statusLogin
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -151,6 +153,11 @@ const mapDispatchToProps = dispatch => ({
 
     loginFirebase: () => dispatch({
         type: "LOGIN_FB"
+    }),
+
+    registerFirebase: userCredentialRegis => dispatch({
+        type: "REGIS_FB",
+        payload: userCredentialRegis
     })
 })
 

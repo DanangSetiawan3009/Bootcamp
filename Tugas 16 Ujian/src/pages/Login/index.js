@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./login.css"
+// import "./login.css"
 import { connect } from 'react-redux';
 
 class index extends Component {
@@ -7,8 +7,7 @@ class index extends Component {
         super(props);
         this.state = {
             username: "",
-            email: "",
-            password: "",
+            password: ""
         };
     }
 
@@ -67,21 +66,21 @@ class index extends Component {
     render() {
         return (
             <div style={{
-                display: "flex",
+                display: "inline-block",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "lightgrey"
+                backgroundColor: "lightgrey",
+                boxSizing: "border-box",
+                padding: 20
             }}>
-                <div>
-                    Username : <input type="text" name="username" onChange={this.showText} value={this.state.username} />
-                </div>
-                <div>
-                    Password : <input type="password" name="password" onChange={this.showText} value={this.state.password} />
-                </div>
-                <div> 
+                <label> Username : </label>
+                    <input type="text" name="username" onChange={this.showText} value={this.state.username} placeholder="Username"/>
+                <label> Password : </label>
+                    <input type="password" name="password" onChange={this.showText} value={this.state.password} placeholder="Password" />
+                <label> 
                     <h2>statusLogin: {this.props.statusLogin.toString()}</h2>
-                </div>
-                <div>
+                </label>
+                <div align="center">
                     <button onClick={this.loginButton}>Login</button>
                 </div>
             </div>

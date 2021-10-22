@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Table} from "react-bootstrap"
 import {Spinner} from "react-bootstrap"
-import {Link, Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import { connect } from 'react-redux';
 
 class index extends Component {
