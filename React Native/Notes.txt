@@ -1,0 +1,11 @@
+npx react-native start : (windows otomatis metro + emulator
+	start metro
+npx react-native run-android :
+	build apk-debug dan install ke device
+
+
+adb install apk :
+	cara instal apk
+
+react-native-elements
+	untuk menggunakan component bawaan supaya tampilan iOS dan 		Android sama
