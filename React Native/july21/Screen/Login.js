@@ -8,10 +8,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {
-                name: "Danang",
-                password: "123"
-            },
             username: "",
             password: ""
         };
@@ -24,15 +20,23 @@ class Login extends Component {
         })
     }
 
-    loginBtn = navigation => {
-        const { username, password, data } = this.state
-        if (username === data.name && password === data.password) {
-            this.resetForm()
-            Alert.alert("Sukses", "Selamat Anda Berhasil Login")
-            navigation.navigate('Login')
-        } else {
-            Alert.alert("Gagal!", "Username/Password Salah")
+    loginBtn = () => {
+        const { username, password } = this.state
+        const user = this.props.data
+        for (let index = 0; index < user.length; index++) {
+            const datas = user[index];
+            console.log(datas);
+            if (username === datas.name && password === datas.username) {
+                const userLogin = datas.name
+                this.props.userInfo(userLogin)
+                Alert.alert("Sukses", "Selamat Anda Berhasil Login")
+                return this.props.setLogin(true)
+            } else {
+                this.resetForm()
+                return Alert.alert("Gagal!", "Username/Password Salah")
+            }
         }
+        
     }
 
     render() {
