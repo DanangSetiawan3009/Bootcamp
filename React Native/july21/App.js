@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.login)
+    // if (this.state.login)
       return <Home loginAkun={this.state.loginAkun}
       datas={this.state.users} />
 

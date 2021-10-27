@@ -36,7 +36,7 @@ class List extends Component {
     render() {
         return (
             <FlatList
-                keyExtractor={(idx) => idx.toString()}
+                keyExtractor={(None, idx) => idx.toString()}
                 data={this.props.users}
                 renderItem={this.rendering}
             />
