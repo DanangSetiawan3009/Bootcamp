@@ -22,21 +22,13 @@ class Login extends Component {
 
     loginBtn = () => {
         const { username, password } = this.state
-        const user = this.props.data
-        for (let index = 0; index < user.length; index++) {
-            const datas = user[index];
-            console.log(datas);
-            if (username === datas.name && password === datas.username) {
-                const userLogin = datas.name
-                this.props.userInfo(userLogin)
-                Alert.alert("Sukses", "Selamat Anda Berhasil Login")
-                return this.props.setLogin(true)
-            } else {
-                this.resetForm()
-                return Alert.alert("Gagal!", "Username/Password Salah")
-            }
+        if (username === "Danang" && password === "Asd") {
+            Alert.alert("Sukses", "Selamat Anda Berhasil Login")
+            return this.props.setLogin(true)
+        } else {
+            this.resetForm()
+            return Alert.alert("Gagal!", "Username/Password Salah")
         }
-        
     }
 
     render() {

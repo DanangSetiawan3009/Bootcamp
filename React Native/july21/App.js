@@ -1,54 +1,54 @@
 import React, { Component } from 'react'
-// import { StyleSheet } from "react-native"
-import { Home, Login, } from "./Screen"
+import { View, StyleSheet, Alert } from "react-native"
+import { Header } from "react-native-elements"
+import { NavigationContainer } from "@react-navigation/native"
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
+import { Call, Status, List } from "./Screen"
 
 
+const Tab = createMaterialTopTabNavigator()
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       login: false,
-      loginAkun: "",
-      users: []
     };
   }
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => this.setState({ users: [...users, ...users] }))
-}
-
   fnLogin = status => {
-    this.setState({ 
-      login: status 
+    this.setState({
+      login: status
     })
   }
 
-  userInfo = userr => {
-    this.setState({ 
-      loginAkun: userr 
-    })
+  setMenu = () => {
+    return (
+      <Tab.Navigator initialRouteName="Call">
+        <Tab.Screen name="Call">
+          {props => <List {...props} />}
+        </Tab.Screen>
+        <Tab.Screen name="Status" component={Status} />
+        <Tab.Screen name="Call" component={Call} />
+      </Tab.Navigator>
+    )
   }
 
   render() {
-    // if (this.state.login)
-      return <Home loginAkun={this.state.loginAkun}
-      datas={this.state.users} />
-
-    return <Login setLogin={this.fnLogin} 
-      data={this.state.users} 
-      userInfo={this.userInfo} />
+    return (
+      <NavigationContainer>
+        {this.setMenu()}
+      </NavigationContainer>
+    )
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     flexDirection: "column"
-//   }
-// })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column"
+  }
+})
 
 export default App;
