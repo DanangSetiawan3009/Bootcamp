@@ -27,16 +27,6 @@ class LoginFirebase extends Component {
     }
 
     loginButton = () => {
-    //     const {username, password} = this.state
-    //     // const dataLogin = {
-    //     //     username, password
-    //     // }
-    //     // this.props.userLogin(dataLogin)
-    //     if (username === "admin" && password === "123") {
-    //         this.props.userLogin(true)
-    //         this.resetForm()
-    //         this.props.history.push("/") 
-    //     } else alert("Username/Password Salah")
         const { username, password } = this.state;
         const user = {
             username, password
@@ -65,38 +55,38 @@ class LoginFirebase extends Component {
         })
     }
 
-    // regisFirebase = () => {
-    //     const { email, password } = this.state
-    //     this.props.firebase.createUser({
-    //         email, password
-    //     })
-    //     .then(userCredentialRegis => {
-    //         console.log("userCredential: ", userCredentialRegis);
-    //         this.props.registerFirebase(userCredentialRegis)
-    //         alert("User created!")
-    //     })
-    //     .catch( err => {
-    //         console.warn("ERROR: ", err)
-    //         alert(err.message)
-    //     })
-    // }
+    regisFirebase = () => {
+        const { email, password } = this.state
+        this.props.firebase.createUser({
+            email, password
+        })
+        .then(userCredentialRegis => {
+            console.log("userCredential: ", userCredentialRegis);
+            this.props.registerFirebase(userCredentialRegis)
+            alert("User created!")
+        })
+        .catch( err => {
+            console.warn("ERROR: ", err)
+            alert(err.message)
+        })
+    }
 
-    // loginFirebase = () => {
-    //     const { email, password } = this.state
-    //     this.props.firebase.loginUser({
-    //         email, password
-    //     })
-    //     .then(userCredential => {
-    //         const user = userCredential.user
-    //         console.log(user);
-    //         alert("Sukses login")
-    //         this.props.history.push("/")
-    //         this.props.loginFirebase()
-    //     })
-    //     .catch(err => {
-    //         alert("Email / Password Salah!")
-    //     })
-    // }
+    loginFirebase = () => {
+        const { email, password } = this.state
+        this.props.firebase.loginUser({
+            email, password
+        })
+        .then(userCredential => {
+            const user = userCredential.user
+            console.log(user);
+            alert("Sukses login")
+            this.props.history.push("/")
+            this.props.loginFirebase()
+        })
+        .catch(err => {
+            alert("Email / Password Salah!")
+        })
+    }
     
     render() {
         return (

@@ -79,4 +79,4 @@ function firebaseCrud() {
   );
 }
 
-export default App;
+export default firebaseCrud;

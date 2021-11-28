@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, Alert } from "react-native"
 import { Input, Button, Header } from "react-native-elements"
 import { SafeAreaProvider } from "react-native-safe-area-context"
+import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux'
+import { loginHandler } from "../Redux/Action/loginAction"
 
 
 class Login extends Component {
@@ -9,7 +12,8 @@ class Login extends Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            errorMsg: ""
         };
     }
 
@@ -22,12 +26,18 @@ class Login extends Component {
 
     loginBtn = () => {
         const { username, password } = this.state
-        if (username === "Danang" && password === "Asd") {
-            Alert.alert("Sukses", "Selamat Anda Berhasil Login")
-            return this.props.setLogin(true)
-        } else {
-            this.resetForm()
-            return Alert.alert("Gagal!", "Username/Password Salah")
+        // if (username === "Danang" && password === "Asd") {
+        //     Alert.alert("Sukses", "Selamat Anda Berhasil Login")
+            return this.props.loginPress({username, password})
+        // } else {
+        //     this.resetForm()
+        //     return Alert.alert("Gagal!", "Username/Password Salah")
+        // }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return state = {
+            errorMsg: props.loginMessage
         }
     }
 
@@ -83,4 +93,24 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login;
+const mapStateToProps = state => ({
+    loginMessage: state.loginReducer.message
+})
+
+// const actionCreators = Object.assign(
+//     {},
+//     loginHandler
+// )
+
+const mapDispatchToProps = dispatch => ({
+    loginPress: data => loginHandler(data, dispatch)
+
+    // doLogin: bindActionCreators(actionCreators, dispatch)
+
+    // loginPress: data => dispatch({
+    //     type: "LOGIN_SUKSES",
+    //     payload: data
+    // })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Login);
